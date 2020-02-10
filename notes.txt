@@ -1,0 +1,59 @@
+migração para microfront
+ 
+O que fazer?
+  - o que é miocrofront?
+    - É mais uma conceito do que uma tecnica/framework
+
+Como fazer?
+  - Tecnologias/tecnicas para construir microfront
+    - quais pseudo-frameworks ou libs
+    - qual aprochs utilizar
+  - Como migrar meu monilito
+    - levantar requisitos da sua aplicação
+      - como vou integrar meus módulos com as rotas e fazer isso virar uma SPA
+      - como fazer a comunicação entre os módulos
+        - devo utlizar um state management global
+        - Utilizar eventos
+        - Utilizar web storage(local/session/cookies), como fazer com dados sensiveis?
+        - Ou não fazer esta intercomunicação entre módulos
+      - separar projetos em diretórios diferentes e verificar funcionalidade
+        - criar repos no github e fazer a publicação no netlify e testar "prod"
+      - como lidar com libs auxiliares e toolkit de components(design systems)
+        -- publicar webcomponents no npm
+      - utilizar PWA para otimizar os módulos(BONUS)
+    - Definir uma estratégia para a migração
+      - utilizar uma estratégia progressiva divididas pos fases
+        - construir o projeto root(wrapper) que contém os módulos
+        - definir os módulos mais relevantes e separar
+        - caso tenha libs auxiliares tornar elas mais atômica, 
+          e utilizar só o necessário tornando o código mais independente possível
+        - ideal utilizar um design systems com os components para os módulos
+    
+Considerações finais
+  - Após todos os pontos, microfront é uma tendencia ou o monolito ainda tem seus pontos positivos
+    - Repetição de código
+
+Isso não vai no artigo
+Estratégia para migração
+  - FASE 1
+    - Pensar como seria aplicada a gestão de acesso a nova arquitetura
+    - Ainda utilizar os módulos(components/ui/providers) da forma como está hoje
+    - Isolar as stores, remover as intercomunicaçoes entre os módulos
+      - ScAddress
+      - ScLogistProviders
+    - criar wrapper para hospedar os módulos
+    - refatorar cada módulo(separação física)
+      - tornar cada módulo independente(dev server, build, linter, etc)
+      - se manteria a mesma arquitetura
+        - core, order, quote, psl, etc.
+    - integrar os módulos no wrapper
+    - criar os subdominios para hospedagem para cada módulos
+    - refatorar os scripts de build para os respectivos módulos
+  - FASE 2
+    - Tentar abstrair o máximo para o components do UI/providers, para que o components se torne um design systems mais robusto
+    - Com essa abstração tentar remover o secure-ui
+  - FASE 3
+    - Separação do core em novos módulos
+      - módulo de menu
+      - módulo de auth(login)
+    - Construir um sistema de comunicação por eventos(RXjs) para eventuais comincações -- OPÇIONAL

@@ -1,6 +1,7 @@
 <template>
   <div id="navbar-app">
     <div id="nav">
+      <router-link to="/">Home</router-link> |
       <router-link to="/app1">App1</router-link> |
       <router-link to="/app2">App2</router-link>
     </div>
@@ -15,6 +16,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #f3f3f3;
 }
 #nav {
   padding: 30px;
