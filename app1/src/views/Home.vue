@@ -4,6 +4,8 @@
       <img alt="Vue logo" src="../assets/logo.png">
     </div>
     <router-link to="/app2/about">App2's about page</router-link>
+    <br/>
+    <router-link to="/app1/app3">app3 inside</router-link>
   </div>
 </template>
 

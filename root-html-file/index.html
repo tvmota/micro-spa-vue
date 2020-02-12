@@ -12,9 +12,11 @@
           "navbar": "http://localhost:8080/app.js",
           "app1": "http://localhost:8081/app.js",
           "app2": "http://localhost:8082/app.js",
+          "app3": "http://localhost:8083/app.js",
           "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.7/system/single-spa.min.js",
           "vue": "https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js",
           "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@3.0.7/dist/vue-router.min.js",
+          "vuex": "https://unpkg.com/vuex@3.1.2/dist/vuex.min.js"
         }
       }
     </script>
@@ -34,12 +36,12 @@
           System.import('single-spa'),
           System.import('vue'),
           System.import('vue-router'),
+          System.import('vuex')
         ]).then(function (modules) {
-          const singleSpa = modules[0];
-          const Vue = modules[1];
-          const VueRouter = modules[2];
+          const [singleSpa, Vue, VueRouter, Vuex] = modules;
 
           Vue.use(VueRouter);
+          Vue.use(Vuex);
 
           singleSpa.registerApplication(
             'navbar',
@@ -57,6 +59,12 @@
             'app2',
             () => System.import('app2'),
             location => location.pathname.startsWith('/app2')
+          )
+
+          singleSpa.registerApplication(
+            'app3',
+            () => System.import('app3'),
+            location => location.pathname.startsWith('/app1/app3')
           )
 
           singleSpa.start();

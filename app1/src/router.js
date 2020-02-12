@@ -7,8 +7,17 @@ export default new Router({
   routes: [
     {
       path: '/app1',
-      name: 'home',
-      component: Home
+      name: 'app1-home',
+      component: Home,
+      children: [
+        {
+          path: '/app3',
+          name: 'app3-home',
+          component: {
+            render (c) { return c('router-view') },
+          },
+        },
+      ],
     },
-  ]
-})
+  ],
+});
