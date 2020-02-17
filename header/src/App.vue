@@ -1,5 +1,5 @@
 <template>
-  <div class="grid__container__header">
+  <div class="grid__container__header border bg-gray-100 border-gray-500 flex justify-center items-center font-semibold text-4xl text-gray-800">
     <h1>Header</h1>
   </div>
 </template>

@@ -17,21 +17,24 @@
         display: grid;
         height: 100%;
         grid-template-columns: 160px repeat(4, 1fr);
-        grid-template-rows: 80px repeat(4, 1fr);
+        grid-template-rows: 80px repeat(4, 1fr);  
         grid-column-gap: 0px;
         grid-row-gap: 0px;
       }
 
-      .grid__container__content { grid-area: 2 / 2 / 6 / 6; }
+      .grid__container__content {
+        grid-area: 2 / 2 / 6 / 6;
+        padding: 8px;
+      }
     </style>
     <script type="systemjs-importmap">
       {
         "imports": {
           "header": "http://localhost:8080/app.js",
-          "sidebar": "http://localhost:8084/app.js",
-          "app1": "http://localhost:8081/app.js",
-          "app2": "http://localhost:8082/app.js",
-          "app3": "http://localhost:8083/app.js",
+          "sidebar": "http://localhost:8085/app.js",
+          "app1": "http://localhost:8082/app.js",
+          "app2": "http://localhost:8083/app.js",
+          "app3": "http://localhost:8084/app.js",
           "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.7/system/single-spa.min.js",
           "vue": "https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js",
           "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@3.0.7/dist/vue-router.min.js",
