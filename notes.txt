@@ -7,8 +7,16 @@ O que fazer?
 Como fazer?
   - Tecnologias/tecnicas para construir microfront
     - quais pseudo-frameworks ou libs
+      single spa
+        pros:
+          separação de código/responábilidade
+        cons:
+          pouco html semântico
+
     - qual aprochs utilizar
   - Como migrar meu monilito
+    - Pensar que tudo(ou quase tudo) deve se tornar um módulo novo
+      - Delimitar a aplicação onde começa e termina X e começa Y
     - levantar requisitos da sua aplicação
       - como vou integrar meus módulos com as rotas e fazer isso virar uma SPA
       - como fazer a comunicação entre os módulos
@@ -46,6 +54,10 @@ Estratégia para migração
       - tornar cada módulo independente(dev server, build, linter, etc)
       - se manteria a mesma arquitetura
         - core, order, quote, psl, etc.
+    - Separação do core em novos módulos
+      - módulo de cabeçalho(header)
+      - módulo de menu(sidebar)
+      - módulo de auth(login)
     - integrar os módulos no wrapper
     - criar os subdominios para hospedagem para cada módulos
     - refatorar os scripts de build para os respectivos módulos
@@ -53,7 +65,13 @@ Estratégia para migração
     - Tentar abstrair o máximo para o components do UI/providers, para que o components se torne um design systems mais robusto
     - Com essa abstração tentar remover o secure-ui
   - FASE 3
-    - Separação do core em novos módulos
-      - módulo de menu
-      - módulo de auth(login)
-    - Construir um sistema de comunicação por eventos(RXjs) para eventuais comincações -- OPÇIONAL
+    - Construir um sistema de comunicação por eventos(RXjs) para eventuais comincações -- OPCIONAL
+
+fontes
+
+  Artigos
+  - https://levelup.gitconnected.com/micro-frontend-architecture-replacing-a-monolith-from-the-inside-out-61f60d2e14c1
+
+  Repos
+  - https://github.com/jualoppaz/single-spa-login-example-with-npm-packages
+

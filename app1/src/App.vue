@@ -2,6 +2,7 @@
   <span id="app1">
     App1 is working!
     <router-view></router-view>
+    <div id="app2"></div>
   </span>
 </template>
 

@@ -3,12 +3,14 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import singleSpaVue from 'single-spa-vue';
+import '@/assets/css/tailwind.css';
 
 Vue.config.productionTip = false;
 
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
+    el: '#app-header',
     render: (h) => h(App),
     router,
   },

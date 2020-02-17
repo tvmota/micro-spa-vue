@@ -1,5 +1,5 @@
 <template>
-  <div id="navbar-app">
+  <aside class="grid__container__sidebar">
     <div id="nav">
       <ul>
         <li v-for="(route, idx) in rotas" :key="idx">
@@ -16,12 +16,12 @@
       <router-link to="/app2">App2</router-link> |
     </div>
     <router-view/>
-  </div>
+  </aside>
 </template>
 
 <script>
   export default {
-    name: 'navbar',
+    name: 'sidebar',
     data() {
       return {
         rotas: [
@@ -32,12 +32,6 @@
           {
             path: '/app1',
             name: 'App1',
-            children: [
-              {
-                path: '/app3',
-                name: 'App3',
-              },
-            ]
           },
           {
             path: '/app2',
@@ -48,7 +42,11 @@
                 name: 'About',
               },
             ]
-          }
+          },
+          {
+            path: '/app3',
+            name: 'App3',
+          },
         ]
       };
     },
@@ -56,24 +54,7 @@
 </script>
 
 <style>
-#navbar-app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  background-color: #f3f3f3;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  .grid__container__sidebar {
+    grid-area: 2 / 1 / 6 / 2;
+  }
 </style>

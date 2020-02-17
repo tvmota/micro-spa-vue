@@ -6,10 +6,29 @@
     <title>Coexisting Vue Microfrontends</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="importmap-type" content="systemjs-importmap">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+      }
+
+      .grid__container {
+        display: grid;
+        height: 100%;
+        grid-template-columns: 160px repeat(4, 1fr);
+        grid-template-rows: 80px repeat(4, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+      }
+
+      .grid__container__content { grid-area: 2 / 2 / 6 / 6; }
+    </style>
     <script type="systemjs-importmap">
       {
         "imports": {
-          "navbar": "http://localhost:8080/app.js",
+          "header": "http://localhost:8080/app.js",
+          "sidebar": "http://localhost:8084/app.js",
           "app1": "http://localhost:8081/app.js",
           "app2": "http://localhost:8082/app.js",
           "app3": "http://localhost:8083/app.js",
@@ -44,8 +63,14 @@
           Vue.use(Vuex);
 
           singleSpa.registerApplication(
-            'navbar',
-            () => System.import('navbar'),
+            'app-header',
+            () => System.import('header'),
+            location => true
+          );
+
+          singleSpa.registerApplication(
+            'app-sidebar',
+            () => System.import('sidebar'),
             location => true
           );
 
@@ -64,13 +89,22 @@
           singleSpa.registerApplication(
             'app3',
             () => System.import('app3'),
-            location => location.pathname.startsWith('/app1/app3')
+            location => location.pathname.startsWith('/app3')
           )
 
           singleSpa.start();
         })
       })()
     </script>
+    <div class="grid__container">
+      <div id="app-header"></div>
+      <div id="app-sidebar"></div>
+      <main class="grid__container__content">
+        <div id="app1"></div>
+        <div id="app2"></div>
+        <div id="app3"></div>
+      </main>
+    </div>
     <!-- See https://github.com/joeldenning/import-map-overrides#user-interface  -->
     <import-map-overrides-full show-when-local-storage="overrides-ui"></import-map-overrides-full>
   </body>

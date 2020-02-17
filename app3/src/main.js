@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
+    el: '#app3',
     render: (h) => h(App),
     router,
     store
