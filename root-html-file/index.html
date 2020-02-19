@@ -41,10 +41,12 @@
           "login": "http://localhost:8080/app.js",
           "header": "http://localhost:8081/app.js",
           "sidebar": "http://localhost:8082/app.js",
+          "home": "http://localhost:8089/app.js",
           "app1": "http://localhost:8083/app.js",
           "app2": "http://localhost:8084/app.js",
           "app3": "http://localhost:8085/app.js",
           "angularjs": "http://localhost:8086/app.js",
+          "home": "http://localhost:8089/app.js",
           "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.7/system/single-spa.min.js",
           "vue": "https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js",
           "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@3.0.7/dist/vue-router.min.js",
@@ -69,12 +71,14 @@
           System.import('vue'),
           System.import('vue-router'),
           System.import('vuex'),
-          System.import('angularjs'),
+          System.import('home'),
         ]).then(function (modules) {
-          const [singleSpa, Vue, VueRouter, Vuex] = modules;
+          const [singleSpa, Vue, VueRouter, Vuex, home] = modules;
 
           Vue.use(VueRouter);
           Vue.use(Vuex);
+
+          console.log(home);
 
           function showWhenAnyOf(routes) {
             return function (location) {
@@ -100,6 +104,7 @@
             showWhenAnyOf(['/login']),
           );
 
+          
           singleSpa.registerApplication(
             'app-header',
             () => System.import('header'),
@@ -110,6 +115,12 @@
             'app-sidebar',
             () => System.import('sidebar'),
             showExcept(['/login']),
+          );
+
+          singleSpa.registerApplication(
+            'home',
+            () => System.import('home'),
+            showWhenAnyOf(['/']),
           );
 
           singleSpa.registerApplication(
@@ -141,6 +152,7 @@
       })()
     </script>
     <div id="login"></div>
+    <div id="home"></div>
     <div class="grid__container grid__container__hidden">
       <div id="app-header"></div>
       <div id="app-sidebar"></div>
