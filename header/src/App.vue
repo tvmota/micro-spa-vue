@@ -7,6 +7,16 @@
 <script>
   export default {
     name: 'app-header',
+    beforeCreate() {
+      if (!sessionStorage.getItem('token')) {
+        window.history.pushState(null, null, '/login');
+      } else {
+        document.querySelector('#login').style.height = '0';
+        document.querySelector('#login').style.display = 'none';
+        document.querySelector('.grid__container').classList.remove('grid__container__hidden');
+        window.history.pushState(null, null, '/angularjs');
+      }
+    },
   };
 </script>
 
