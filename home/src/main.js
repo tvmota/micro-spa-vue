@@ -2,6 +2,7 @@ import './set-public-path';
 import Vue from 'vue';
 import singleSpaVue from 'single-spa-vue';
 import App from './App.vue';
+import './assets/css/tailwind.css';
 
 Vue.config.productionTip = false;
 

@@ -7,6 +7,8 @@ import store from './store';
 
 Vue.config.productionTip = false;
 
+Vue.config.ignoredElements = [/test-\w*/, /wc-\w*/];
+
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {

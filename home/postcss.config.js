@@ -1,6 +1,8 @@
+/* eslint-disable */
 module.exports = {
-  "plugins": [
+  plugins: [
     require('tailwindcss')('tailwind.js'),
     require('autoprefixer')(),
-  ]
-}
+  ],
+};
+/* eslint-enable */

@@ -1,28 +1,49 @@
 <template>
-  <div id="home">
-    home
-    <!--img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/-->
-    <div class="grid__container">
-      <div id="app-header"></div>
-      <div id="app-sidebar"></div>
-      <main class="grid__container__content">
-        <div id="app1"></div>
-        <div id="app2"></div>
-        <div id="app3"></div>
-        <div id="angularjs"></div>
-      </main>
-    </div>
+  <div id="home" class="grid__container">
+    <AppHeader />
+    <AppSidebar />
+    <main class="grid__container__content">
+      <div id="app1"></div>
+      <div id="app2"></div>
+      <div id="app3"></div>
+      <div id="angularjs"></div>
+    </main>
   </div>
 </template>
 
 <script>
+import AppHeader from '@/components/AppHeader.vue';
+import AppSidebar from '@/components/AppSidebar.vue';
+
 export default {
   name: 'App',
+  beforeCreate() {
+    if (!sessionStorage.getItem('token')) {
+      document.querySelector('#home').style.height = '0';
+      document.querySelector('#home').style.display = 'none';
+      window.history.pushState(null, null, '/login');
+    } else {
+      document.querySelector('#login').style.height = '0';
+      document.querySelector('#login').style.display = 'none';
+      document.querySelector('#home').style.height = '100%';
+      document.querySelector('#home').style.display = 'block';
+      if (window.location.pathname === '/login') {
+        window.history.pushState(null, null, '/app1');
+      }
+    }
+  },
+  components: {
+    AppHeader,
+    AppSidebar,
+  },
 };
 </script>
 
 <style lang="scss">
+  #home {
+    height: 100%;
+  }
+
   .grid__container {
     display: grid;
     height: 100%;
